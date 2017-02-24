@@ -1,0 +1,2 @@
+rootProject.name = 'PiggyMetrics'
+include 'config', 'account-service', 'auth-service', 'gateway', 'monitoring', 'notification-service', 'registry', 'statistics-service', 'mongodb'
