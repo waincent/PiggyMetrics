@@ -1,7 +1,6 @@
 package com.piggymetrics.auth;
 
 import com.piggymetrics.auth.service.security.MongoUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,6 +24,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
+import javax.inject.Inject;
+
 @SpringBootApplication
 @EnableResourceServer
 @EnableDiscoveryClient
@@ -39,8 +40,12 @@ public class AuthApplication {
 	@EnableWebSecurity
 	protected static class webSecurityConfig extends WebSecurityConfigurerAdapter {
 
-		@Autowired
 		private MongoUserDetailsService userDetailsService;
+
+        @Inject
+		public webSecurityConfig(MongoUserDetailsService userDetailsService){
+			this.userDetailsService = userDetailsService;
+		}
 
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
@@ -71,15 +76,19 @@ public class AuthApplication {
 
 		private TokenStore tokenStore = new InMemoryTokenStore();
 
-		@Autowired
 		@Qualifier("authenticationManagerBean")
 		private AuthenticationManager authenticationManager;
 
-		@Autowired
 		private MongoUserDetailsService userDetailsService;
 
-		@Autowired
 		private Environment env;
+
+		@Inject
+		public OAuth2AuthorizationConfig(AuthenticationManager authenticationManager, MongoUserDetailsService userDetailsService, Environment env){
+		    this.authenticationManager = authenticationManager;
+		    this.userDetailsService = userDetailsService;
+		    this.env = env;
+        }
 
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {

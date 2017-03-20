@@ -49,7 +49,7 @@ task copyJar(type: Copy) {
 task buildDockerImage(type: DockerBuildImage) {
     dependsOn   copyJar
     inputDir = file('.')
-    tag = "waincent/${project.name}:${project.version}"
+    tag = "waincent/${project.name}"
 }
 
 build.dependsOn buildDockerImage

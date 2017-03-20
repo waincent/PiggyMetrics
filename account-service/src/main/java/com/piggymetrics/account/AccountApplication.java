@@ -32,6 +32,7 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableConfigurationProperties
 @Configuration
+@EnableHystrix
 public class AccountApplication extends ResourceServerConfigurerAdapter {
 
 	@Autowired

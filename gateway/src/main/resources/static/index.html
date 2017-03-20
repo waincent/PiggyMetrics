@@ -60,7 +60,7 @@
                         <div id="minusborder">
                             <div id="minusone"></div>
                         </div>
-                        <div id="minustext">Log out</div>
+                        <div id="minustext">退出</div>
                     </div>
                 </form>
             </div>
@@ -78,8 +78,8 @@
                             <div class="plusitemone"></div>
                             <div class="plusitemtwo"></div>
                         </div>
-                        <span class="plusitemtitle">Add income</span>
-                        <span class="plusitemitalic">Empty space</span>
+                        <span class="plusitemtitle">添加收入</span>
+                        <span class="plusitemitalic">空白</span>
                     </div>
                     <div class="plusitem" id="incomesplusitem">
                         <div class="plusitemborder incomebutton"></div>
@@ -88,8 +88,8 @@
                     </div>
                     <div class="blueline"></div>
                     <div class="brownline"></div>
-                    <div id="incomedown"><div class="arrowup"></div>forth</div>
-                    <div id="incomeup"><div class="arrowdown"></div>back</div>
+                    <div id="incomedown"><div class="arrowup"></div>前进</div>
+                    <div id="incomeup"><div class="arrowdown"></div>后退</div>
                     <div class="frame">
                         <div id="incomewrapper" class="wrapper">
                             <div id="incomeslider"></div>
@@ -104,8 +104,8 @@
                             <div class="plusitemone"></div>
                             <div class="plusitemtwo"></div>
                         </div>
-                        <span class="plusitemtitle">Add expense</span>
-                        <span class="plusitemitalic">Empty space</span>
+                        <span class="plusitemtitle">添加支出</span>
+                        <span class="plusitemitalic">空白</span>
                     </div>
                     <div class="plusitem" id="expensesplusitem">
                         <div class="plusitemborder"></div>
@@ -114,8 +114,8 @@
                     </div>
                     <div class="blueline"></div>
                     <div class="brownline"></div>
-                    <div id="expensedown"><div class="arrowup"></div>forth</div>
-                    <div id="expenseup"><div class="arrowdown"></div>back</div>
+                    <div id="expensedown"><div class="arrowup"></div>前进</div>
+                    <div id="expenseup"><div class="arrowdown"></div>后退</div>
                     <div class="frame">
                         <div id="expensewrapper" class="wrapper">
                             <div id="expenseslider"></div>
@@ -127,20 +127,20 @@
                     <div class="brownline"></div>
                     <div id="topsavingsline">
                         <div id="piggyicon"></div>
-                        <span class="savingstitle14">My spare money</span>
-                        <span class="savingstitle12">At the moment</span>
+                        <span class="savingstitle14">我的备用金</span>
+                        <span class="savingstitle12">在那一刻</span>
                         <div id="rublebox"></div><div id="rublesign"></div>
                         <input type="text" name="savingsvalue" id="savingsvalue" data-a-sep=" " data-v-min="0" data-v-max="999999999" data-l-zero="deny" maxlength="12" autocomplete="off">
                     </div>
                     <div id="bottomsavingsline">
                         <input type="checkbox" name="deposit" id="deposit">
                         <label for="deposit" class="button"></label>
-                        <label for="deposit" class="savingsdeposit">Accumulation account</label>
-                        <span class="savingspercent">Interest</span>
+                        <label for="deposit" class="savingsdeposit">累积帐户</label>
+                        <span class="savingspercent">兴趣</span>
                         <input type="text" name="percentvalue" id="percentvalue" data-a-sep=""  data-v-min="0.00" data-v-max="99.99" data-l-zero="deny" data-a-sign=" %" data-w-empty="sign" data-p-sign="s" maxlength="5" data-a-pad="false" size="6" data-a-dec="." autocomplete="off">
                         <input type="checkbox" name="capitalization" id="capitalization">
                         <label for="capitalization" class="button"></label>
-                        <label for="capitalization" class="savingscapital">Monthly capitalization</label>
+                        <label for="capitalization" class="savingscapital">每月的资金情况</label>
                     </div>
                 </div>
                 <div id="savebutton"><div id="leftborder"></div><div id="centerborder"></div><div id="rightborder"></div><div id="save"></div></div>
@@ -154,7 +154,7 @@
                 <div class="modal-content">
                     <div class="notes-title">Financial notes</div>
                     <div class="modal-close"><div class="close-sign"></div></div>
-                    <div class="notes-save"><div class="modal-save-icon"></div><div class="modal-save-text">Save changes</div></div>
+                    <div class="notes-save"><div class="modal-save-icon"></div><div class="modal-save-text">保存更改</div></div>
                     <textarea id="notes" class="notes-input" autocomplete="off" maxlength="5000"></textarea>
                 </div>
             </div>
@@ -167,23 +167,23 @@
                     <input type="text" name="modalvalue" class="modalvalue" data-a-sep=" " data-v-min="0" data-v-max="999999999" data-l-zero="deny" maxlength="12" autocomplete="off" value="0">
                     <div class="modalselects">
                         <select class="modalcurrency">
-                            <option value="RUB">rubles</option>
-                            <option selected="selected" value="USD">dollars</option>
-                            <option value="EUR">euro</option>
+                            <option value="RUB">人民币</option>
+                            <option selected="selected" value="USD">美元</option>
+                            <option value="EUR">欧元</option>
                         </select>
 
                         <select class="modalperiod">
-                            <option value="YEAR">Per year</option>
-                            <option value="QUARTER">Per quarter</option>
-                            <option selected="selected" value="MONTH">Per month</option>
-                            <option value="DAY">Per day</option>
-                            <option value="HOUR">Per hour</option>
+                            <option value="YEAR">每年</option>
+                            <option value="QUARTER">每季度</option>
+                            <option selected="selected" value="MONTH">每月</option>
+                            <option value="DAY">每天</option>
+                            <option value="HOUR">每小时</option>
                         </select>
                     </div>
                     <div class="initicons"><div id="chooseicon" class="cart-icon"></div><div class="initicons-arrow"></div></div>
-                    <input class="modaltitle" placeholder="Title" type="text" autocomplete="off" maxlength="18"/>
-                    <div class="modal-save"><div class="modal-save-icon"></div><div class="modal-save-text">Save changes</div></div>
-                    <div class="modal-delete"><div id="modaldeletecross"></div><div class="modal-delete-text">Remove</div></div>
+                    <input class="modaltitle" placeholder="标题" type="text" autocomplete="off" maxlength="18"/>
+                    <div class="modal-save"><div class="modal-save-icon"></div><div class="modal-save-text">保存修改</div></div>
+                    <div class="modal-delete"><div id="modaldeletecross"></div><div class="modal-delete-text">移除</div></div>
 
                     <!-- Expenses table -->
                     <div class="modalexpensessurface">
@@ -244,9 +244,9 @@
         <section class="bottompage">
             <div id="mainblock">
                 <div id="setcurrency">
-                    <div id="usdcurr" class="currunchecked">Usd</div>
-                    <div id="eurcurr" class="currunchecked">Eur</div>
-                    <div id="rubcurr" class="currunchecked">Rub</div>
+                    <div id="usdcurr" class="currunchecked">美元</div>
+                    <div id="eurcurr" class="currunchecked">欧元</div>
+                    <div id="rubcurr" class="currunchecked">人民币</div>
                 </div>
                 <div id="expense-cursor">
                     <div class="cursorline"></div>
@@ -259,8 +259,8 @@
                 <div id="expenses-lines-container"></div>
                 <div id="incomes-lines-container"></div>
 
-                <div id="deltatitle" class="flag">Incomes &mdash; expenses<div class="triangle"></div></div>
-                <div id="savingstitle" class="flag">Savings<div class="triangle"></div></div>
+                <div id="deltatitle" class="flag">收入 &mdash; 支出<div class="triangle"></div></div>
+                <div id="savingstitle" class="flag">保存<div class="triangle"></div></div>
 
                 <div id="outermaindiv"> <div class="linesbackground"></div>
                     <div id="outermaincursordiv"> <input class="knob" id="outer-circle-cursor"/> </div>
@@ -282,7 +282,7 @@
                                 <div class="cursordiv"> <input class="knob" id="first-circle-cursor"/> </div>
                                 <div id="first-circle-title" class="circletoptitle lightcircletitle"></div>
                                 <div id="first-circle-value" class="circlevalue boldcircletitle"></div></span>
-                                <div class="bottomcircletitle"><span class="boldcircletitle curr"></span><span class="lightcircletitle">/ Hour</span></div>
+                                <div class="bottomcircletitle"><span class="boldcircletitle curr"></span><span class="lightcircletitle">/ 小时</span></div>
                                 <div id="first-circle-percent"><span class="lightcircletitle"></span></div>
                                 <div class="circleline"></div>
                                 <div class="circle100percent"><span class="lightcircletitle">100%</span></div>
@@ -305,7 +305,7 @@
                                 <div class="cursordiv"> <input class="knob" id="second-circle-cursor"/> </div>
                                 <div id="second-circle-title" class="circletoptitle lightcircletitle"></div>
                                 <div id="second-circle-value" class="circlevalue boldcircletitle"></div></span>
-                                <div class="bottomcircletitle"><span class="boldcircletitle curr"></span><span class="lightcircletitle">/ Day</span></div>
+                                <div class="bottomcircletitle"><span class="boldcircletitle curr"></span><span class="lightcircletitle">/ 天</span></div>
                                 <div id="second-circle-percent"><span class="lightcircletitle"></span></div>
                                 <div class="circleline"></div>
                                 <div class="circle100percent"><span class="lightcircletitle">100%</span></div>
@@ -327,7 +327,7 @@
                                 <div class="cursordiv"> <input class="knob" id="third-circle-cursor"/> </div>
                                 <div id="third-circle-title" class="circletoptitle lightcircletitle"></div>
                                 <div id="third-circle-value" class="circlevalue boldcircletitle"></div></span>
-                                <div class="bottomcircletitle"><span class="boldcircletitle curr"></span><span class="lightcircletitle">/ Year</span></div>
+                                <div class="bottomcircletitle"><span class="boldcircletitle curr"></span><span class="lightcircletitle">/ 年</span></div>
                                 <div id="third-circle-percent"><span class="lightcircletitle"></span></div>
                                 <div class="circleline"></div>
                                 <div class="circle100percent"><span class="lightcircletitle">100%</span></div>
@@ -361,20 +361,20 @@
                 </div>
 
                 <div id="savings-slider-container">
-                    <span class="savings-slider">part of the spare money which you'll send to accumulation account every month:</span>
+                    <span class="savings-slider">你每月会把一部分闲钱汇到累积帐户:</span>
                     <div id="savings-slider"></div>
-                    <div id="savingsTip0">Without monthly deposit refill</div>
-                    <div id="savingsTip100">All savings go to deposit every month</div>
+                    <div id="savingsTip0">无月有存款</div>
+                    <div id="savingsTip100">每月储蓄存款</div>
                 </div>
 
                 <div id="savingscircles">
                     <div id="after-savings">
-                        <div class="savings-circle-title lightcircletitle">In a year</div>
+                        <div class="savings-circle-title lightcircletitle">在一年</div>
                         <div id="after-savings-value" class="boldcircletitle"></div></span>
                         <div class="savings-circle-currency boldcircletitle"></div>
                     </div>
                     <div id="before-savings">
-                        <div class="savings-circle-title lightcircletitle">At the moment</div>
+                        <div class="savings-circle-title lightcircletitle">在此刻</div>
                         <div id="before-savings-value" class="boldcircletitle"></div></span>
                         <div class="savings-circle-currency boldcircletitle"></div>
                     </div>
@@ -415,44 +415,44 @@
                                 <div class="side" id="side1">
                                     <div id="backlogin"></div>
                                     <div id="enter"></div>
-                                    <input class="frontforms" id="frontloginform" name="username" placeholder="enter your login" type="text" autocomplete="off"/>
+                                    <input class="frontforms" id="frontloginform" name="username" placeholder="输入用户名" type="text" autocomplete="off"/>
                                 </div>
                                 <div class="side" id="side2">
                                     <div id="backpassword"></div>
-                                    <input class="frontforms" id="frontpasswordform" name="password" placeholder="password" type="password" autocomplete="off"/>
+                                    <input class="frontforms" id="frontpasswordform" name="password" placeholder="密码" type="password" autocomplete="off"/>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div class="fliptext">Or <a href="#">create new account</a></div>
+                    <div class="fliptext">或者 <a href="#">创建一个新用户</a></div>
                 </div>
 
                 <div class="BACKCARD">
                     <div id="infopage">
-                        <span class="frominfo" id="infosubtitle">Piggy Metrics is the new simple way to deal with personal finances</span>
-                        <span class="frominfo" id="infotitle">This is how it works</span>
+                        <span class="frominfo" id="infosubtitle">Piggy Metrics 是处理个人财务新的简单方式</span>
+                        <span class="frominfo" id="infotitle">工作原理</span>
                         <div class="infoflipback frominfo"></div>
                         <div id="infoleft" class="infocolumn frominfo">
-                            <div id="leftcolumn">enter planned periodic<br>incomes and expenses<br>
+                            <div id="leftcolumn">输入计划周期的收入和支出<br>
                                 <div class="columnimage"></div>
-                                <span class="columnfooter">Plan or estimate your regular expenses. Divide them into categories. Сomponents of your budget<br>will always be near to hand</span>
+                                <span class="columnfooter">计划或估算你的日常开支，并把它们分类。<br/>你的预算的组成部分将永远在你手边</span>
                             </div>
                         </div>
                         <div id="infocenter"class=" infocolumn frominfo">
-                            <div id="centercolumn">check all your savings<br>at the moment<br>
+                            <div id="centercolumn">实时检查你的储蓄<br>
                                 <div class="columnimage"></div>
-                                <span class="columnfooter">Regularly update the value of your savings.<br>Follow the progress.</span>
+                                <span class="columnfooter">跟随进度定期更新你储蓄的价值.</span>
                             </div>
                         </div>
                         <div id="inforight"class="infocolumn frominfo">
-                            <div id="rightcolumn">analyze financial statistics<br>and forecasts<br>
+                            <div id="rightcolumn">财务统计分析与预测<br>
                                 <div class="columnimage"></div>
-                                <span class="columnfooter">Based on this information, you’ll get statistics for your budget and forecast of savings<br>for the year ahead</span>
+                                <span class="columnfooter">根据这些信息，<br/>你会得到你的预算和储蓄预测的统计数据.</span>
                             </div>
                         </div>
                         <div id="infoline"></div>
-                        <div id="infolinetext" class="frominfo">Try without registration</div>
-                        <button class="demobutton">Demo account</button>
+                        <div id="infolinetext" class="frominfo">使用游客身份体验</div>
+                        <button class="demobutton">测试账户-DEMO</button>
                         <a id="infofooter" href="https://github.com/sqshq/PiggyMetrics">&copy; 2016 sqshq.com</a>
                         <a id="iconsfooter" href="attribution.html">icons attribution</a>
                     </div>
@@ -461,25 +461,25 @@
                             <div class="avatar"></div>
                         </div>
                         <div id="createaccount"></div>
-                        <div class="fliptext">Or <a href="#">use existing account</a></div>
+                        <div class="fliptext">或者 <a href="#">使用已经存在的账户</a></div>
                         <div id="registrationforms">
                             <form id="signup" autocomplete="off">
-                                <input class="backforms" name="reg_user_name" id="backloginform" placeholder=" enter a login" type="text"/><br>
-                                <input class="backforms" name="reg_user_password" id="backpasswordform" placeholder=" password" type="password"/>
-                                <button class="regbutton" type="submit" name="registration">r e g i s t e r</button>
+                                <input class="backforms" name="reg_user_name" id="backloginform" placeholder=" 用户名" type="text"/><br>
+                                <input class="backforms" name="reg_user_password" id="backpasswordform" placeholder=" 密码" type="password"/>
+                                <button class="regbutton" type="submit" name="registration">注册</button>
                             </form>
                         </div>
                         <div id="mailform">
                             <form id="mail" autocomplete="off">
-                                <input name="usermail" id="backmailform" placeholder="e-mail address" type="text"/><br>
-                                <button class="mailbutton" type="submit" name="mailbutton">Subscribe to notifications</button>
+                                <input name="usermail" id="backmailform" placeholder="邮箱地址" type="text"/><br>
+                                <button class="mailbutton" type="submit" name="mailbutton">订阅通知</button>
                             </form>
-                            <span class="mailforminfo">Thank you for registration.<br>
+                            <span class="mailforminfo">感谢您的注册.<br>
                                 <span class="mailforminfosmall">
-                                    We suggest you to enter an e-mail address so we can occasionally remind you about the service. Continuous tracking your budget statistics might be especially effective.
+                                    我们建议您输入一个电子邮件地址，以便我们可以偶尔提醒您的服务。连续跟踪你的预算数据可能特别有效。
                                 </span>
                             </span>
-                            <div id="skipmail"><a href="#">Skip this step</a></div>
+                            <div id="skipmail"><a href="#">跳过此步骤</a></div>
                         </div>
                     </div>
                 </div>
