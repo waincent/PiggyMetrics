@@ -1,33 +1,39 @@
 buildscript {
-    ext {
-        springBootVersion = '1.5.2.RELEASE'
+  ext {
+    springBootVersion = '2.0.0.M2'
+  }
+  repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+      url 'https://repo.spring.io/libs-milestone'
     }
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath 'com.bmuschko:gradle-docker-plugin:3.0.5'
-    }
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath 'com.bmuschko:gradle-docker-plugin:3.0.8'
+    classpath 'com.github.ben-manes:gradle-versions-plugin:0.15.0'
+  }
 }
 
-allprojects {
-    apply plugin: 'java'
+/*allprojects {
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
     repositories {
         mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-milestone'
+        }
     }
 
     tasks.withType(JavaCompile) {
         options.incremental = true
     }
-}
+}*/
 
 subprojects {
-    group = 'com.waincent'
-    version = '0.0.1'
+  group = 'com.waincent'
+  version = '0.0.1'
 }

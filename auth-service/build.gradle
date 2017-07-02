@@ -1,51 +1,64 @@
 apply plugin: 'java'
 apply plugin: 'idea'
+//apply plugin: 'application'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.bmuschko.docker-remote-api'
+apply plugin: 'com.github.ben-manes.versions'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+  maven {
+    url 'https://repo.spring.io/libs-milestone'
+  }
+}
 
 dependencyManagement {
-    imports {
-        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6'
-    }
+  imports {
+    mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.SR1'
+  }
 }
 
 dependencies {
 
-    compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
-    compile 'org.springframework.boot:spring-boot-starter-security'
-    compile 'org.springframework.boot:spring-boot-starter-web'
+  compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
+  compile 'org.springframework.boot:spring-boot-starter-security'
+  compile 'org.springframework.boot:spring-boot-starter-web'
 
-    compile 'org.springframework.cloud:spring-cloud-starter-config'
-    compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+  compile 'org.springframework.cloud:spring-cloud-starter-config'
+  compile 'org.springframework.cloud:spring-cloud-starter-eureka'
 
-    compile 'org.springframework.security.oauth:spring-security-oauth2'
+  compile 'org.springframework.security.oauth:spring-security-oauth2'
 
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'com.jayway.jsonpath:json-path:2.2.0'
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-    testCompile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0'
+  testCompile 'junit:junit:4.12'
+  testCompile 'com.jayway.jsonpath:json-path:2.3.0'
+  testCompile("org.springframework.boot:spring-boot-starter-test")
+  testCompile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0'
 }
 
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 
 docker {
-    url = "unix:///var/run/docker.sock"
+  url = "unix:///var/run/docker.sock"
 }
 
 task copyJar(type: Copy) {
-    dependsOn   'jar'
-    from        "build/libs/${project.name}-${project.version}.jar"
-    into        'build/libs'
-    rename { String fileName ->
-        fileName.replace("-${project.version}", "")
-    }
+  dependsOn 'jar'
+  from "build/libs/${project.name}-${project.version}.jar"
+  into 'build/libs'
+  rename { String fileName ->
+    fileName.replace("-${project.version}", "")
+  }
 }
 
 task buildDockerImage(type: DockerBuildImage) {
-    dependsOn   copyJar
-    inputDir = file('.')
-    tag = "waincent/${project.name}"
+  dependsOn copyJar
+  inputDir = file('.')
+  tag = "waincent/${project.name}"
 }
 
 build.dependsOn buildDockerImage

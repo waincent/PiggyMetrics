@@ -3,6 +3,7 @@ package com.piggymetrics.statistics;
 import com.piggymetrics.statistics.repository.converter.DataPointIdReaderConverter;
 import com.piggymetrics.statistics.repository.converter.DataPointIdWriterConverter;
 import com.piggymetrics.statistics.service.security.CustomUserInfoTokenServices;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,8 +18,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 
-import java.util.Arrays;
-
 @SpringBootApplication
 @EnableResourceServer
 @EnableDiscoveryClient
@@ -27,25 +26,24 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class StatisticsApplication {
 
-	@Autowired
-	private ResourceServerProperties sso;
+    @Autowired
+    private ResourceServerProperties sso;
 
-	public static void main(String[] args) {
-		SpringApplication.run(StatisticsApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(StatisticsApplication.class, args);
+    }
 
-	@Bean
-	public ResourceServerTokenServices tokenServices() {
-		return new CustomUserInfoTokenServices(sso.getUserInfoUri(), sso.getClientId());
-	}
+    @Bean
+    public ResourceServerTokenServices tokenServices() {
+        return new CustomUserInfoTokenServices(sso.getUserInfoUri(), sso.getClientId());
+    }
 
-	@Configuration
-	static class CustomConversionsConfig {
+    @Configuration
+    static class CustomConversionsConfig {
 
-		@Bean
-		public CustomConversions customConversions() {
-			return new CustomConversions(Arrays.asList(new DataPointIdReaderConverter(),
-					new DataPointIdWriterConverter()));
-		}
-	}
+        @Bean
+        public CustomConversions customConversions() {
+            return new CustomConversions(Arrays.asList(new DataPointIdReaderConverter(), new DataPointIdWriterConverter()));
+        }
+    }
 }

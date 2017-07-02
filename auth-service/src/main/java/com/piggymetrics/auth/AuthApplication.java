@@ -1,6 +1,7 @@
 package com.piggymetrics.auth;
 
 import com.piggymetrics.auth.service.security.MongoUserDetailsService;
+import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,113 +25,85 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
-import javax.inject.Inject;
-
 @SpringBootApplication
 @EnableResourceServer
 @EnableDiscoveryClient
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AuthApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AuthApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AuthApplication.class, args);
+    }
 
-	@Configuration
-	@EnableWebSecurity
-	protected static class webSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Configuration
+    @EnableWebSecurity
+    protected static class webSecurityConfig extends WebSecurityConfigurerAdapter {
 
-		private MongoUserDetailsService userDetailsService;
+        private MongoUserDetailsService userDetailsService;
 
         @Inject
-		public webSecurityConfig(MongoUserDetailsService userDetailsService){
-			this.userDetailsService = userDetailsService;
-		}
-
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			// @formatter:off
-			http
-				.authorizeRequests().anyRequest().authenticated()
-			.and()
-				.csrf().disable();
-			// @formatter:on
-		}
-
-		@Override
-		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			auth.userDetailsService(userDetailsService)
-					.passwordEncoder(new BCryptPasswordEncoder());
-		}
-
-		@Override
-		@Bean
-		public AuthenticationManager authenticationManagerBean() throws Exception {
-			return super.authenticationManagerBean();
-		}
-	}
-
-	@Configuration
-	@EnableAuthorizationServer
-	protected static class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
-
-		private TokenStore tokenStore = new InMemoryTokenStore();
-
-		@Qualifier("authenticationManagerBean")
-		private AuthenticationManager authenticationManager;
-
-		private MongoUserDetailsService userDetailsService;
-
-		private Environment env;
-
-		@Inject
-		public OAuth2AuthorizationConfig(AuthenticationManager authenticationManager, MongoUserDetailsService userDetailsService, Environment env){
-		    this.authenticationManager = authenticationManager;
-		    this.userDetailsService = userDetailsService;
-		    this.env = env;
+        public webSecurityConfig(MongoUserDetailsService userDetailsService) {
+            this.userDetailsService = userDetailsService;
         }
 
-		@Override
-		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            // @formatter:off
+            http.authorizeRequests().anyRequest().authenticated().and().csrf().disable();
+            // @formatter:on
+        }
 
-			// TODO persist clients details
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        }
 
-			// @formatter:off
-			clients.inMemory()
-					.withClient("browser")
-					.authorizedGrantTypes("refresh_token", "password")
-					.scopes("ui")
-			.and()
-					.withClient("account-service")
-					.secret(env.getProperty("ACCOUNT_SERVICE_PASSWORD"))
-					.authorizedGrantTypes("client_credentials", "refresh_token")
-					.scopes("server")
-			.and()
-					.withClient("statistics-service")
-					.secret(env.getProperty("STATISTICS_SERVICE_PASSWORD"))
-					.authorizedGrantTypes("client_credentials", "refresh_token")
-					.scopes("server")
-			.and()
-					.withClient("notification-service")
-					.secret(env.getProperty("NOTIFICATION_SERVICE_PASSWORD"))
-					.authorizedGrantTypes("client_credentials", "refresh_token")
-					.scopes("server");
-			// @formatter:on
-		}
+        @Override
+        @Bean
+        public AuthenticationManager authenticationManagerBean() throws Exception {
+            return super.authenticationManagerBean();
+        }
+    }
 
-		@Override
-		public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-			endpoints
-					.tokenStore(tokenStore)
-					.authenticationManager(authenticationManager)
-					.userDetailsService(userDetailsService);
-		}
+    @Configuration
+    @EnableAuthorizationServer
+    protected static class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
-		@Override
-		public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-			oauthServer
-					.tokenKeyAccess("permitAll()")
-					.checkTokenAccess("isAuthenticated()");
-		}
-	}
+        private TokenStore tokenStore = new InMemoryTokenStore();
+
+        @Qualifier("authenticationManagerBean")
+        private AuthenticationManager authenticationManager;
+
+        private MongoUserDetailsService userDetailsService;
+
+        private Environment env;
+
+        @Inject
+        public OAuth2AuthorizationConfig(AuthenticationManager authenticationManager,
+            MongoUserDetailsService userDetailsService, Environment env) {
+            this.authenticationManager = authenticationManager;
+            this.userDetailsService = userDetailsService;
+            this.env = env;
+        }
+
+        @Override
+        public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+
+            // TODO persist clients details
+
+            // @formatter:off
+            clients.inMemory().withClient("browser").authorizedGrantTypes("refresh_token", "password").scopes("ui").and().withClient("account-service").secret(env.getProperty("ACCOUNT_SERVICE_PASSWORD")).authorizedGrantTypes("client_credentials", "refresh_token").scopes("server").and().withClient("statistics-service").secret(env.getProperty("STATISTICS_SERVICE_PASSWORD")).authorizedGrantTypes("client_credentials", "refresh_token").scopes("server").and().withClient("notification-service").secret(env.getProperty("NOTIFICATION_SERVICE_PASSWORD")).authorizedGrantTypes("client_credentials", "refresh_token").scopes("server");
+            // @formatter:on
+        }
+
+        @Override
+        public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+            endpoints.tokenStore(tokenStore).authenticationManager(authenticationManager).userDetailsService(userDetailsService);
+        }
+
+        @Override
+        public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+            oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+        }
+    }
 }
